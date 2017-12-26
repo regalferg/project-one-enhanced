@@ -1,0 +1,48 @@
+body{
+/*background: url("../images/nickel.jpg");*/
+background: url("../images/jumbo_image.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+
+}
+
+
+.panel > .panel-heading{
+	background-color: #0033CC;
+	color: white;
+}
+.panel-body{
+	background-color: #6978E8;
+	color: white;
+}
+
+.jumbotron{
+	
+	margin-bottom: 0px;
+	opacity: 0.8;
+	background: url("../images/concert_background.jpg");
+	background-size: cover;
+	background-color: white;
+
+
+
+}
+label{
+	color: white;
+}
+
+/*#player{
+	width: 640;
+	height: 390;
+}*/
+#execute-request-button{
+	margin: 15px;
+}
+
+
+
+@media handheld, screen and (max-width: 720px) {
+iframe {
+    width: 50%;
+}
+
