@@ -30,7 +30,13 @@ function initMap() {
         title: 'EVENT LOCATION'
     });
 
-
+         map.addListener('center_changed', function() {
+    // 3 seconds after the center of the map has changed, pan back to the
+    // marker.
+    window.setTimeout(function() {
+        map.panTo(mainMarker.getPosition());
+    }, 3000);
+});
 
 
 
@@ -73,13 +79,7 @@ function createMarker(place) {
 
 
 
-  map.addListener('center_changed', function() {
-    // 3 seconds after the center of the map has changed, pan back to the
-    // marker.
-    window.setTimeout(function() {
-        map.panTo(mainMarker.getPosition());
-    }, 3000);
-});
+ 
 
 }
 
