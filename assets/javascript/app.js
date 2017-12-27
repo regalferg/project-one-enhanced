@@ -29,7 +29,7 @@ var myLatlng = {lat: 40.752664, lng: -73.994309};
 
     
 
-  
+  infowindow = new google.maps.InfoWindow();
     var service = new google.maps.places.PlacesService(map);
     service.nearbySearch({
         location: myLatlng,
@@ -59,7 +59,7 @@ function createMarker(place) {
   
   google.maps.event.addListener(marker, 'click', function() {
     console.log(place.name);
-    infowindow = new google.maps.InfoWindow();
+    
     infowindow.setContent(place.name);
     infowindow.open(map, this);
   });
