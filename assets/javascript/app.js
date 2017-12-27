@@ -38,6 +38,7 @@ var myLatlng = {lat: -25.363, lng: 131.044};
 
  
  $("#add-band").on("click", function(event) {
+  event.preventDefault();
   eventName = $("#band-input").val().trim();
   eventCity = $("#venue-input").val().trim();
   var queryURL = 
