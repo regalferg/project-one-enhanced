@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Project Z</title>
-	<!-- Added a link to Bootstrap-->
+	<head>
+		<meta charset="UTF-8">
+		<title>Project Z</title>
+		<!-- Added a link to Bootstrap-->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 		<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 		<link rel="stylesheet" href="assets/css/style.css">
@@ -16,74 +16,74 @@
 			<div class="jumbotron">
 				<h1 class="text-center">Event Ready!</h1>
 				<p class="text-center">Prepare for your concert event.</p>
-				
-			</div> <!-- END Jumbo -->
-
+				<!-- END Jumbo -->
+			</div>
 			<div class="row">
 				<div class="col-lg-6">
-				<div class="panel panel-default">
-				<div class="panel-heading">
-				<h3 class="panel-title">Event Search</h3>
-				</div> <!-- END Panel heading -->
-				<div class="panel-body">
-<form role="form">
-	<div class="form-group">
-		<label for="band-0input">Band Name:</label>
-		<input class="form-control" id="band-input" type="text" placeholder="Enter Band Name" required>
-		<label for="venue-input">Venue City Name:</label>
-		<input class="form-control" id="venue-input" type="text" placeholder="Enter Venue City" required>
-		</div> <!-- END Form Grp -->
-		<input class="btn btn-default" id="add-band" type="submit" ></input>
-	</form>
-				</div> <!-- END Panel body -->
-				</div> <!-- END Panel 1 Main -->
-				</div> <!-- END Col 1 -->
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Event Search</h3>
+							<!-- END Panel heading -->
+						</div>
+						<div class="panel-body">
+							<form role="form">
+								<div class="form-group">
+									<label for="band-0input">Band Name:</label>
+									<input class="form-control" id="band-input" type="text" placeholder="Enter Band Name" required>
+									<label for="venue-input">Venue City Name:</label>
+									<input class="form-control" id="venue-input" type="text" placeholder="Enter Venue City" required>
+									<!-- END Form Grp -->
+								</div>
+								<input class="btn btn-default" id="add-band" type="submit" ></input>
+							</form>
+							<!-- END Panel body -->
+						</div>
+						<!-- END Panel 1 Main -->
+					</div>
+					<!-- END Col 1 -->
+				</div>
 				<div class="col-lg-6">
 					<div class="panel panel-default">
-				<div class="panel-heading">
-				<h3 class="panel-title">Event &amp; Venue Info</h3>
-				</div> <!-- END Panel heading -->
-				<div class="panel-body" id="band-display" >
-				</div> <!-- END Panel 2 body -->
-				</div> <!-- END Panel 2 Main -->
+						<div class="panel-heading">
+							<h3 class="panel-title">Event &amp; Venue Info</h3>
+							<!-- END Panel heading -->
+						</div>
+						<div class="panel-body" id="band-display" >
+							<!-- END Panel 2 body -->
+						</div>
+						<!-- END Panel 2 Main -->
+					</div>
 				</div>
-			</div> <!-- END Row 1 -->
-
-	<!-- Map Results -->		
-<div class="row">
-
-<div class="col-lg-12 ">
-
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title">Location &amp; Nearby Food</h3>
-			</div> <!-- END Panel heading -->
-<div class="panel-body mapContainer">
-	<div id="map" class="center-block"></div>
-
-
-	
-
-				</div> <!-- END Panel 2 body -->
-				</div> <!-- END Panel 2 Main -->
-
+				<!-- END Row 1 -->
+			</div>
+			<!-- Map Results -->
+			<div class="row">
+				<div class="col-lg-12 ">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Location &amp; Nearby Food</h3>
+							<!-- END Panel heading -->
+						</div>
+						<div class="panel-body mapContainer">
+							<div id="map" class="center-block"></div>
+							
+							<!-- END Panel 2 body -->
+						</div>
+						<!-- END Panel 2 Main -->
+					</div>
 				</div>
+				<!-- END Row 2 -->
+			</div>
+			<!-- END Container -->
+		</div>
+		
+		
+		<!-- Scripts -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script type="text/javascript" src="assets/javascript/app.js"></script>
+		<script
 			
-		</div> <!-- END Row 2 -->
-
-					</div> <!-- END Container -->
-					
-
-
-	
-<!-- Scripts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="assets/javascript/app.js"></script>
-<script
-	
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAq1ayeCCdz-Mfs7e2WqYEt7vmOxAec1zk&libraries=places"
-    ></script>
-
-
-		</body>
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAq1ayeCCdz-Mfs7e2WqYEt7vmOxAec1zk&libraries=places"
+		></script>
+	</body>
 </html>
