@@ -39,6 +39,24 @@ label{
 	margin: 15px;
 }
 
+/** Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+  #map {
+        height: 100%;
+        width: 100%;
+       
+        margin: 0 auto 0 auto;
+    	display: inline-block;
+
+
+      }
+   .mapContainer{
+        height:400px;
+        width:100%;
+        clear:both;
+   }
+
+
 
 
 @media handheld, screen and (max-width: 720px) {

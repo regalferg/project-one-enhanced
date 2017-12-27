@@ -1,207 +1,84 @@
+var eventName = '';
+var eventCity ='';
+var map;
+var infowindow;
+var mapLat = 0;
+var mapLong = 0;
+var myLatlng = {lat: -25.363, lng: 131.044};
 
-var artist = "";
- var title = "";
-  /***** START BOILERPLATE CODE: Load client library, authorize user. *****/
+          function initMap() {
 
-  // Global variables for GoogleAuth object, auth status.
-  var GoogleAuth;
+           myLatlng = {lat: parseFloat(mapLat), lng: parseFloat(mapLong)};
+            console.log(myLatlng);
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: myLatlng,
+          zoom: 14
+        });
+      var marker = new google.maps.Marker({
+          position: myLatlng,
+          map: map,
+          title: 'Click to zoom'
+        });
+          map.addListener('center_changed', function() {
+          // 3 seconds after the center of the map has changed, pan back to the
+          // marker.
+          window.setTimeout(function() {
+            map.panTo(marker.getPosition());
+          }, 3000);
+        });
 
-  /**
-   * Load the API's client and auth2 modules.
-   * Call the initClient function after the modules load.
-   */
-  function handleClientLoad() {
-    gapi.load('client:auth2', initClient);
-  }
-
-  function initClient() {
-    // Initialize the gapi.client object, which app uses to make API requests.
-    // Get API key and client ID from API Console.
-    // 'scope' field specifies space-delimited list of access scopes
-
-    gapi.client.init({
-        'clientId': '592833189862-asc7k9n3hraaujhfccf81f6nhgdldt3i.apps.googleusercontent.com',
-        'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'],
-        'scope': 'https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/youtubepartner'
-    }).then(function () {
-      GoogleAuth = gapi.auth2.getAuthInstance();
-
-      // Listen for sign-in state changes.
-      GoogleAuth.isSignedIn.listen(updateSigninStatus);
-
-      // Handle initial sign-in state. (Determine if user is already signed in.)
-      setSigninStatus();
-
-      // Call handleAuthClick function when user clicks on "Authorize" button.
-      $('#execute-request-button').click(function() {
-        handleAuthClick(event);
-      }); 
-    });
-  }
-
-  function handleAuthClick(event) {
-    // Sign user in after click on auth button.
-    GoogleAuth.signIn();
-  }
-
-  function setSigninStatus() {
-    var user = GoogleAuth.currentUser.get();
-    isAuthorized = user.hasGrantedScopes('https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/youtubepartner');
-    // Toggle button text and displayed statement based on current auth status.
-    if (isAuthorized) {
-      defineRequest();
-    }
-  }
-
-  function updateSigninStatus(isSignedIn) {
-    setSigninStatus();
-  }
-
-  function createResource(properties) {
-    var resource = {};
-    var normalizedProps = properties;
-    for (var p in properties) {
-      var value = properties[p];
-      if (p && p.substr(-2, 2) == '[]') {
-        var adjustedName = p.replace('[]', '');
-        if (value) {
-          normalizedProps[adjustedName] = value.split(',');
-        }
-        delete normalizedProps[p];
-      }
-    }
-    for (var p in normalizedProps) {
-      // Leave properties that don't have values out of inserted resource.
-      if (normalizedProps.hasOwnProperty(p) && normalizedProps[p]) {
-        var propArray = p.split('.');
-        var ref = resource;
-        for (var pa = 0; pa < propArray.length; pa++) {
-          var key = propArray[pa];
-          if (pa == propArray.length - 1) {
-            ref[key] = normalizedProps[p];
-          } else {
-            ref = ref[key] = ref[key] || {};
-          }
-        }
-      };
-    }
-    return resource;
-  }
-
-  function removeEmptyParams(params) {
-    for (var p in params) {
-      if (!params[p] || params[p] == 'undefined') {
-        delete params[p];
-      }
-    }
-    return params;
-  }
-
-  function executeRequest(request) {
-    request.execute(function(response) {
-      console.log(response);
-    });
-  }
-
-  function buildApiRequest(requestMethod, path, params, properties) {
-    params = removeEmptyParams(params);
-    var request;
-    if (properties) {
-      var resource = createResource(properties);
-      request = gapi.client.request({
-          'body': resource,
-          'method': requestMethod,
-          'path': path,
-          'params': params
-      });
-    } else {
-      request = gapi.client.request({
-          'method': requestMethod,
-          'path': path,
-          'params': params
-      });
-    }
-    executeRequest(request);
-  }
-
-  /***** END BOILERPLATE CODE *****/
-
-  
-  function defineRequest() {
-    // See full sample for buildApiRequest() code, which is not 
-// specific to a particular API or API method.
-
-// buildApiRequest('GET',
-//                 '/youtube/v3/search',
-//                 {'maxResults': '5',
-//                  'part': 'snippet',
-//                  'q': 'tool the pot',
-//                  'type': ''});
-
-  }
-
-// After the API loads, call a function to enable the search box.
-function handleAPILoaded() {
-  $('#search-button').attr('disabled', false);
-}
-
-// Search for a specified string.
-function search() {
-  var q =  artist + title;
-  var request = gapi.client.youtube.search.list({
-    q: q,
-    'maxResults': '1',
-    part: 'snippet'
-  });
-
-  request.execute(function(response) {
-    //var str = JSON.stringify(response);
-    var str = response.result.items[0].id.videoId;
-    //$('#search-container').html('<pre>' + str + '</pre>');
-    console.log(response.result.items[0].id.videoId);
-    $("#player").attr('src',"https://www.youtube.com/embed/" + str )
-
-
-  });
-}
-
-  $("#search-button").on("click", function(event) {
-        event.preventDefault();
- 
-        
-         search();
-        console.log("Test Search");
-        
-        
+        marker.addListener('click', function() {
+          map.setZoom(8);
+          map.setCenter(marker.getPosition());
         });
 
 
-    $("#add-band").on("click", function(event) {
-        event.preventDefault();
+      }
+
+
  
-        
-         artist = $("#band-input").val().trim();
-        console.log("Test " + artist);
-        
-        
-        });
+ $("#add-band").on("click", function(event) {
+  eventName = $("#band-input").val().trim();
+  eventCity = $("#venue-input").val().trim();
+  var queryURL = 
+  "https://app.ticketmaster.com/discovery/v2/events?apikey=Y68sacNOAQxxvGbr0Du9KNZNykWVrE3m&keyword=" + eventName + "&city=" + eventCity;
+   console.log(queryURL);
+      $.ajax({
+          url: queryURL,
+          method: "GET"
+        }).done(function(response) {
+          console.log(response._embedded);
+          document.preventDefault;
 
 
+          var results = response._embedded.events[0]._embedded.venues;
+          for (var i = 0; i < results.length; i++) {
+              var eventsObj = results[i];
+              console.log(eventsObj);
+              $("#band-display").html("<tr><td><strong> Venue Name:</strong><br> " + eventsObj.name + "</td></tr>"); 
+              $("#band-display").append("<tr><td><strong> Address: </strong><br>" + eventsObj.address.line1 + "</td></tr>");
+              $("#band-display").append("<tr><td><strong> General Rules:</strong><br> " + eventsObj.generalInfo.generalRule + "</td></tr>");
+              $("#band-display").append("<tr><td><strong> Parking:</strong><br> " + eventsObj.parkingDetail + "</td></tr>");
+              $("#band-display").append("<tr><td><strong> Social: </strong><br>" + eventsObj.social.twitter.handle + "</td></tr>");
+              var posterImage = eventsObj.images[0].url;
+              console.log(posterImage);
+              var img = $('<img>') .attr('src', posterImage )
+              $("#band-display").append(img);
 
-	$("#add-lyrics").on("click", function(event) {
-        event.preventDefault();
-        
-        title = $("#lyrics-input").val().trim();
-        
+               mapLat = eventsObj.location.latitude;
+               mapLong   = eventsObj.location.longitude; 
+              console.log(mapLat + " " + mapLong);
 
-    
-       	console.log("Test" + title);
-       	search();
-        //$("#band-display").html("<h3>" + artist + "</h3>");
-               
-      });
+       
 
+              initMap();
 
+            }
 
+          
+          });
 
+     
+          
 
+    });

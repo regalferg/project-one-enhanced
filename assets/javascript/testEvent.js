@@ -1,5 +1,41 @@
 var eventName = '';
 var eventCity ='';
+var map;
+var infowindow;
+var mapLat = 0;
+var mapLong = 0;
+var myLatlng = {lat: -25.363, lng: 131.044};
+
+          function initMap() {
+
+           myLatlng = {lat: parseFloat(mapLat), lng: parseFloat(mapLong)};
+            console.log(myLatlng);
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: myLatlng,
+          zoom: 14
+        });
+      var marker = new google.maps.Marker({
+          position: myLatlng,
+          map: map,
+          title: 'Click to zoom'
+        });
+          map.addListener('center_changed', function() {
+          // 3 seconds after the center of the map has changed, pan back to the
+          // marker.
+          window.setTimeout(function() {
+            map.panTo(marker.getPosition());
+          }, 3000);
+        });
+
+        marker.addListener('click', function() {
+          map.setZoom(8);
+          map.setCenter(marker.getPosition());
+        });
+
+
+      }
+
+
  
  $("#add-band").on("click", function(event) {
   eventName = $("#band-input").val().trim();
@@ -27,12 +63,22 @@ var eventCity ='';
               var posterImage = eventsObj.images[0].url;
               console.log(posterImage);
               var img = $('<img>') .attr('src', posterImage )
-              $("#band-display").append(img);      
+              $("#band-display").append(img);
+
+               mapLat = eventsObj.location.latitude;
+               mapLong   = eventsObj.location.longitude; 
+              console.log(mapLat + " " + mapLong);
+
+       
+
+              initMap();
+
             }
 
           
           });
 
+     
           
 
     });
