@@ -19,15 +19,19 @@ background-color: black;
 
 .jumbotron{
 	
-	margin-bottom: 0px;
+	margin-bottom: 15px;
 	opacity: 0.8;
 	background: url("../images/concert_background.jpg");
 	background-size: cover;
 	background-color: white;
 
+}
 
+.error{
+	color:yellow;
 
 }
+
 label{
 	color: white;
 }

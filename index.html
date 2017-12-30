@@ -5,7 +5,6 @@
 		<title>Project Z</title>
 		<!-- Added a link to Bootstrap-->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-		<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 		<link rel="stylesheet" href="assets/css/style.css">
 		
 	</head>
@@ -26,12 +25,12 @@
 							<!-- END Panel heading -->
 						</div>
 						<div class="panel-body">
-							<form role="form">
+							<form role="form" id="eventSearch" >
 								<div class="form-group">
 									<label for="band-input">Band Name:</label>
-									<input class="form-control" id="band-input" type="text" placeholder="Enter Band Name" required value="">
+									<input class="form-control" id="bandinput" name="bandinput"  type="text" placeholder="Enter Band Name" required value=""><br>
 									<label for="venue-input">Venue City Name:</label>
-									<input class="form-control" id="venue-input" type="text" placeholder="Enter Venue City" required value="Ardmore">
+									<input class="form-control" id="venueinput" name="venueinput" type="text" placeholder="Enter Venue City" required value="">
 									<!-- END Form Grp -->
 								</div>
 								<input class="btn btn-default" id="add-band" type="submit" ></input>
@@ -80,6 +79,8 @@
 		
 		<!-- Scripts -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.js"></script>
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/additional-methods.js"></script>
 		<script type="text/javascript" src="assets/javascript/app.js"></script>
 		<script
 			
