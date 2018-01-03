@@ -97,6 +97,8 @@ $("#eventSearch").validate({
 
     //Function call attached to form submission and Ajax API call
     submitHandler: function(form) {
+        $("#band-display").empty();
+        $("#map").empty();
         event.preventDefault();
         eventName = $("#bandinput").val().trim();
         eventCity = $("#venueinput").val().trim();
